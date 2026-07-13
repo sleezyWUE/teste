@@ -134,11 +134,15 @@ with aba_selecionada[0]:
                             fiscal_id
                         ])
 
-                    st.balloons()
-                    st.success("✅ CONCLUÍDO COM SUCESSO! A nota fiscal foi escaneada e sincronizada com a gerência.")
-                    st.info(f"Código da Transação: {transaction_id} | Valor Identificado: R$ {extracted_value}")
+                    # Interface limpa e profissional de conclusão
+                    st.success("✅ Processamento Concluído com Sucesso!")
+                    st.info(f"Registro Sincronizado | ID: {transaction_id} | Valor: R$ {extracted_value}")
                     
-                    time.sleep(3)
+                    # Barra de progresso rápida apenas para dar o tempo de leitura antes do reset
+                    progresso = st.progress(0)
+                    for i in range(100):
+                        time.sleep(0.02)
+                        progresso.progress(i + 1)
                     
                     st.session_state.form_key += 1
                     st.rerun()
